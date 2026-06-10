@@ -31,6 +31,13 @@ export interface EtherscanTxListResponse {
   result: EtherscanTransaction[] | string 
 }
 
+export interface EtherscanTokenTransfer extends EtherscanTransaction {
+  tokenName: string
+  tokenSymbol: string
+  tokenDecimal: string
+  contractAddress: string
+}
+
 export interface EtherscanCodeResponse {
   status: '1' | '0'
   message: string
