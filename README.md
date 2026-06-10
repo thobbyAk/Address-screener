@@ -70,4 +70,3 @@ Given more time, I would add:
 - **Batch mode** — accept a file of addresses, output a multi-row CSV
 - **Retry logic + rate limiting** — for production use against Etherscan's API
 - **Multi-chain support** — Bitcoin (UTXO-based, good for amount tracing), Solana, others
-- **Risk scoring** — a weighted score across the signals above, once backed by a labelled address dataset
