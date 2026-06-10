@@ -59,11 +59,9 @@ async function fetchTxList(params: Record<string, string>, label: string): Promi
 }
 
 export async function getTransactions(address: string): Promise<EtherscanTransaction[]> {
-  const [normal, internal, tokens] = await Promise.all([
-    fetchTxList({ module: 'account', action: 'txlist', address }, 'Normal tx'),
-    fetchTxList({ module: 'account', action: 'txlistinternal', address }, 'Internal tx'),
-    fetchTxList({ module: 'account', action: 'tokentx', address }, 'Token transfer') as Promise<EtherscanTokenTransfer[]>,
-  ])
+  const normal = await fetchTxList({ module: 'account', action: 'txlist', address }, 'Normal tx')
+  const internal = await fetchTxList({ module: 'account', action: 'txlistinternal', address }, 'Internal tx')
+  const tokens = await fetchTxList({ module: 'account', action: 'tokentx', address }, 'Token transfer') as EtherscanTokenTransfer[]
 
   // Internal txs share a hash with their parent normal tx — deduplicate before merging
   const seen = new Set<string>()
